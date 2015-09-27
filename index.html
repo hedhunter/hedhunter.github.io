@@ -19,22 +19,38 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" class="navbar-toggle">
-          </button><a href="#" class="navbar-brand">HedHunter<span class="add-if-space"> - Vous donne accès aux aides auxquelles vous avez droit</span></a></div><div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li><a href="#contact" class="navbar-button">Facebook</a></li><li><a ui-sref="account" class="navbar-button">Twitter</a></li></ul></div></div></nav>
-    <section id="main-section">
+          </button><a href="#" class="navbar-brand">HedHunter<span class="add-if-space"> - Le moteur de recherche des aides financières aux étudiants</span></a></div><div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right"><li><a href="https://www.facebook.com/HedHunter-1642011509390003/timeline/" class="navbar-button">Facebook</a></li><li><a href="https://twitter.com/?lang=fr" class="navbar-button">Twitter</a></li></ul></div></div></nav>
+    <section id="main-section" ng-controller="FormCtrl">
       <div class="container">
        <div id="col-display">
-          <h1 class="center">Mes informations</h1>
-          <h3 class="center">Je remplis mes informations pour</h3>
-          <form ng-controller="FormCtrl">
-             <div class="form-group"><input datepicker-popup="M/d/yyyy" is-open="opened" datepicker-options="dateOptions" ng-click="open($event)" ng-model="user.date_de_naissance" placeholder="qqaass" class="form-control"/></div>
-             <div class="form-group"><input type="text" ng-model="user.zz" placeholder="zz" class="form-control"/></div>
-             <div class="form-group">
-                <select ng-model="user.eee" ng-options="value for value in test" class="form-control">
-                   <option value="" disabled="disabled">- choisir -</option>
-                </select>
+         <div ng-hide="confirm">
+           <h1 class="center">Mes informations</h1>
+           <form>
+              <div class="form-group"><input type="text" ng-model="user.email" placeholder="mon@email.com" class="form-control"/></div>
+              <div class="form-group"><input type="text" ng-model="user.nom" placeholder="Mon nom (ex: Marcel Bichon)" class="form-control"/></div>
+              <div class="form-group"><input datepicker-popup="M/d/yyyy" is-open="opened" datepicker-options="dateOptions" ng-click="open($event)" ng-model="user.dateNaissance" placeholder="date de naissance" class="form-control"/></div>
+              <div class="form-group"><input type="text" ng-model="user.codePostal" placeholder="code postal" class="form-control"/></div>
+              <div class="form-group">
+                 <select ng-model="user.eee" ng-options="situation for situation in situations" class="form-control">
+                    <option value="" disabled="disabled">- ma situation -</option>
+                 </select>
+              </div>
+              <div class="form-group"><input type="text" ng-model="user.etablissement" placeholder="Etablissement" class="form-control"/></div>
+              <div class="checkbox">
+               <label>
+                 <input type="checkbox" ng-model="habiteChezParents" value="">
+                 J'habite chez mes parents
+               </label>
              </div>
-             <button type="button" ng-click="sendEmail()" class="center btn btn-primary">Voir les aides auxquel j'ai droitssssss</button>
-          </form>
+             <div class="form-group center">
+                <button type="button" ng-click="sendEmail()" class="send-button btn-lg btn btn-success">Voir les aides auxquel j'ai droit</button>
+              </div>
+           </form>
+         </div>
+          <div ng-show="confirm">
+            <h1 class="center">Confirmation</h1>
+            <h3 class="center">L'envoi a bien été effectué, nous allons vous recontacter rapidement par email</h3>
+          </div>
        </div>
     </div>
     </section>

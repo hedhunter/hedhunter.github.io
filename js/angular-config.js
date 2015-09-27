@@ -4,10 +4,10 @@ angular.module("hedhunter", [
 ]).controller('FormCtrl', FormCtrl);
 
 
-function FormCtrl($scope, $window) {
-  $scope.test = ['test1','test2','test3'];
+function FormCtrl($scope, $http) {
+  $scope.situations = ['Formation continue','Formation professionnelle','Apprentissage'];
   $scope.user = {
-    date_de_naissance: null
+    dateNaissance: null
   };
 
   $scope.open = function($event) {
@@ -17,6 +17,10 @@ function FormCtrl($scope, $window) {
   };
 
   $scope.sendEmail= function() {
-    $window.location = "mailto:foo@bar.com?subject=mail subject&body=mail body";
+    $http.post("http://localhost:5000/save", $scope.user);
+    $scope.confirm = true;
+    if (false){
+      $http.post("https://hidden-spire-2308.herokuapp.com/save");
+    }
   };
 }
