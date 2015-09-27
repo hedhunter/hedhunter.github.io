@@ -17,7 +17,7 @@ function FormCtrl($scope, $http) {
   };
 
   $scope.sendEmail= function() {
-    $http.post("http://localhost:5000/save", $scope.user);
+    $http.post("https://hidden-spire-2308.herokuapp.com/save", $scope.user);
     $scope.confirm = true;
     if (false){
       $http.post("https://hidden-spire-2308.herokuapp.com/save");
